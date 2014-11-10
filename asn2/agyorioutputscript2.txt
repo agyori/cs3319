@@ -1,0 +1,383 @@
+--------------
+LOAD DATA INFILE '/tmp/fall2014data.txt' into table Professor
+FIELDS TERMINATED BY ','
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Homer', 'Simpson', '250011111','hsimpson','Masters','lreid2')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Marge', 'Simpson', '250011112','msimpson','Masters','mmm')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Lisa', 'Simpson','250011113','lsimpson','PhD','lreid2')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Maggie','Simpson','250011114','msimpso1','PhD','lreid2')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Ned','Flanders', '250000666','nflanders','PhD','mkatchab')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Todd', 'Flanders','250000667','tflanders','Masters','mbauer')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Monty', 'Burns','250000001','mburns','PhD','dvancise')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Waylan','Smithers','250022222','wsmither','PhD','mbauer')
+--------------
+
+--------------
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Eric', 'Cartman', '250643023', 'ecartman', 'PhD','lreid2')
+--------------
+
+--------------
+select * from TA
+--------------
+
+userID	fname	lname	studentNum	studentType	imgPath	headProfID
+ecartman	Eric	Cartman	250643023	PhD	NULL	lreid2
+hsimpson	Homer	Simpson	250011111	Masters	NULL	lreid2
+lsimpson	Lisa	Simpson	250011113	PhD	NULL	lreid2
+mburns	Monty	Burns	250000001	PhD	NULL	dvancise
+msimpso1	Maggie	Simpson	250011114	PhD	NULL	lreid2
+msimpson	Marge	Simpson	250011112	Masters	NULL	mmm
+nflander	Ned	Flanders	250000666	PhD	NULL	mkatchab
+tflander	Todd	Flanders	250000667	Masters	NULL	mbauer
+wsmither	Waylan	Smithers	250022222	PhD	NULL	mbauer
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs1026', 'Intro to Programming')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs1033', 'Multimedia and Communications')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs1032', 'Info Systems and Design')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs2212', 'Intro to Software Engineering')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs3319', 'Intro to Databases')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs4411', 'Advanced Databases')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs2210', 'Data Structures')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs2208', 'Computer Organization')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs2209', 'Logic')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs2211', 'Software Tools')
+--------------
+
+--------------
+insert into Course(courseNum, courseName) 
+    values ('cs3357', 'Networks')
+--------------
+
+--------------
+select * from Course
+--------------
+
+courseNum	courseName
+cs1026	Intro to Programming
+cs1032	Info Systems and Design
+cs1033	Multimedia and Communications
+cs2208	Computer Organization
+cs2209	Logic
+cs2210	Data Structures
+cs2211	Software Tools
+cs2212	Intro to Software Engineering
+cs3319	Intro to Databases
+cs3357	Networks
+cs4411	Advanced Databases
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('hsimpson','mdaley')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('hsimpson','mbauer')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('mburns','mdaley')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('mburns','dvancise')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','mbauer')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','sosborn')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','mperry')
+--------------
+
+--------------
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('lsimpson','lreid2')
+--------------
+
+--------------
+select * from ProfessorCoSupervisesTA
+--------------
+
+TAUserID	profID
+mburns	dvancise
+lsimpson	lreid2
+hsimpson	mbauer
+msimpso1	mbauer
+hsimpson	mdaley
+mburns	mdaley
+msimpso1	mperry
+msimpso1	sosborn
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('hsimpson', 'cs1033', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('tflander', 'cs1033', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpson', 'cs1033', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('hsimpson', 'cs3357', 'Spring', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('tflander', 'cs3357', 'Spring', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('wsmither', 'cs3357', 'Spring', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs3357', 'Spring', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('nflander', 'cs1033', 'Fall', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('lsimpson', 'cs1033', 'Fall', 2013)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs3319', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('lsimpson', 'cs1026', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpso1', 'cs1026', 'Fall', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs1026', 'Summer', 2014)
+--------------
+
+--------------
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpson', 'cs1026', 'Summer', 2014)
+--------------
+
+--------------
+select * from TAAssignedToCourse
+--------------
+
+TAUserID	courseNum	theYear	term	studentCount
+hsimpson	cs1033	2014	Fall	NULL
+hsimpson	cs3357	2013	Spring	NULL
+lsimpson	cs1026	2014	Fall	NULL
+lsimpson	cs1033	2013	Fall	NULL
+mburns	cs1026	2014	Summer	NULL
+mburns	cs3319	2014	Fall	NULL
+mburns	cs3357	2013	Spring	NULL
+msimpso1	cs1026	2014	Fall	NULL
+msimpson	cs1026	2014	Summer	NULL
+msimpson	cs1033	2014	Fall	NULL
+nflander	cs1033	2013	Fall	NULL
+tflander	cs1033	2014	Fall	NULL
+tflander	cs3357	2013	Spring	NULL
+wsmither	cs3357	2013	Spring	NULL
+--------------
+select * from TA
+--------------
+
+userID	fname	lname	studentNum	studentType	imgPath	headProfID
+ecartman	Eric	Cartman	250643023	PhD	NULL	lreid2
+hsimpson	Homer	Simpson	250011111	Masters	NULL	lreid2
+lsimpson	Lisa	Simpson	250011113	PhD	NULL	lreid2
+mburns	Monty	Burns	250000001	PhD	NULL	dvancise
+msimpso1	Maggie	Simpson	250011114	PhD	NULL	lreid2
+msimpson	Marge	Simpson	250011112	Masters	NULL	mmm
+nflander	Ned	Flanders	250000666	PhD	NULL	mkatchab
+tflander	Todd	Flanders	250000667	Masters	NULL	mbauer
+wsmither	Waylan	Smithers	250022222	PhD	NULL	mbauer
+--------------
+update TA set fname='Rod' where fname='Todd'
+--------------
+
+--------------
+select * from TA
+--------------
+
+userID	fname	lname	studentNum	studentType	imgPath	headProfID
+ecartman	Eric	Cartman	250643023	PhD	NULL	lreid2
+hsimpson	Homer	Simpson	250011111	Masters	NULL	lreid2
+lsimpson	Lisa	Simpson	250011113	PhD	NULL	lreid2
+mburns	Monty	Burns	250000001	PhD	NULL	dvancise
+msimpso1	Maggie	Simpson	250011114	PhD	NULL	lreid2
+msimpson	Marge	Simpson	250011112	Masters	NULL	mmm
+nflander	Ned	Flanders	250000666	PhD	NULL	mkatchab
+tflander	Rod	Flanders	250000667	Masters	NULL	mbauer
+wsmither	Waylan	Smithers	250022222	PhD	NULL	mbauer
+--------------
+select * from TA
+--------------
+
+userID	fname	lname	studentNum	studentType	imgPath	headProfID
+ecartman	Eric	Cartman	250643023	PhD	NULL	lreid2
+hsimpson	Homer	Simpson	250011111	Masters	NULL	lreid2
+lsimpson	Lisa	Simpson	250011113	PhD	NULL	lreid2
+mburns	Monty	Burns	250000001	PhD	NULL	dvancise
+msimpso1	Maggie	Simpson	250011114	PhD	NULL	lreid2
+msimpson	Marge	Simpson	250011112	Masters	NULL	mmm
+nflander	Ned	Flanders	250000666	PhD	NULL	mkatchab
+tflander	Rod	Flanders	250000667	Masters	NULL	mbauer
+wsmither	Waylan	Smithers	250022222	PhD	NULL	mbauer
+--------------
+update TA set headProfID='mperry' where fname='Waylan'
+--------------
+
+--------------
+select * from TA
+--------------
+
+userID	fname	lname	studentNum	studentType	imgPath	headProfID
+ecartman	Eric	Cartman	250643023	PhD	NULL	lreid2
+hsimpson	Homer	Simpson	250011111	Masters	NULL	lreid2
+lsimpson	Lisa	Simpson	250011113	PhD	NULL	lreid2
+mburns	Monty	Burns	250000001	PhD	NULL	dvancise
+msimpso1	Maggie	Simpson	250011114	PhD	NULL	lreid2
+msimpson	Marge	Simpson	250011112	Masters	NULL	mmm
+nflander	Ned	Flanders	250000666	PhD	NULL	mkatchab
+tflander	Rod	Flanders	250000667	Masters	NULL	mbauer
+wsmither	Waylan	Smithers	250022222	PhD	NULL	mperry
+--------------
+select * from TAAssignedToCourse
+--------------
+
+TAUserID	courseNum	theYear	term	studentCount
+hsimpson	cs1033	2014	Fall	NULL
+hsimpson	cs3357	2013	Spring	NULL
+lsimpson	cs1026	2014	Fall	NULL
+lsimpson	cs1033	2013	Fall	NULL
+mburns	cs1026	2014	Summer	NULL
+mburns	cs3319	2014	Fall	NULL
+mburns	cs3357	2013	Spring	NULL
+msimpso1	cs1026	2014	Fall	NULL
+msimpson	cs1026	2014	Summer	NULL
+msimpson	cs1033	2014	Fall	NULL
+nflander	cs1033	2013	Fall	NULL
+tflander	cs1033	2014	Fall	NULL
+tflander	cs3357	2013	Spring	NULL
+wsmither	cs3357	2013	Spring	NULL
+--------------
+update TAAssignedToCourse set theYear='2012' WHERE courseNum='cs1026' AND term='Fall' AND theYear='2014'
+--------------
+
+--------------
+select * from TAAssignedToCourse
+--------------
+
+TAUserID	courseNum	theYear	term	studentCount
+hsimpson	cs1033	2014	Fall	NULL
+hsimpson	cs3357	2013	Spring	NULL
+lsimpson	cs1026	2012	Fall	NULL
+lsimpson	cs1033	2013	Fall	NULL
+mburns	cs1026	2014	Summer	NULL
+mburns	cs3319	2014	Fall	NULL
+mburns	cs3357	2013	Spring	NULL
+msimpso1	cs1026	2012	Fall	NULL
+msimpson	cs1026	2014	Summer	NULL
+msimpson	cs1033	2014	Fall	NULL
+nflander	cs1033	2013	Fall	NULL
+tflander	cs1033	2014	Fall	NULL
+tflander	cs3357	2013	Spring	NULL
+wsmither	cs3357	2013	Spring	NULL

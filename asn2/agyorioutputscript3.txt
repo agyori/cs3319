@@ -1,0 +1,146 @@
+--------------
+select plname from Professor
+--------------
+
+plname
+Mercer
+Ling
+Vancise
+Lutfiyya
+Barron
+Reid
+Bauer
+Daley
+Katchabaw
+Moreno Maza
+Perry
+Madhavji
+Osborn
+--------------
+select fname, lname from TA join Professor on headProfID=pUserID where pfname='Mike'
+--------------
+
+fname	lname
+Ned	Flanders
+Rod	Flanders
+--------------
+select fname, lname, studentType from TA where studentType='PhD'
+--------------
+
+fname	lname	studentType
+Eric	Cartman	PhD
+Lisa	Simpson	PhD
+Monty	Burns	PhD
+Maggie	Simpson	PhD
+Ned	Flanders	PhD
+Waylan	Smithers	PhD
+--------------
+select * from Course where courseNum like 'cs2___'
+--------------
+
+courseNum	courseName
+cs2208	Computer Organization
+cs2209	Logic
+cs2210	Data Structures
+cs2211	Software Tools
+cs2212	Intro to Software Engineering
+--------------
+select fname, courseName from TA join TAAssignedToCourse on TA.userID=TAAssignedToCourse.TAUserID 
+   join Course on TAAssignedToCourse.courseNum=Course.courseNum
+    where TAAssignedToCourse.term='Fall'
+--------------
+
+fname	courseName
+Homer	Multimedia and Communications
+Lisa	Intro to Programming
+Lisa	Multimedia and Communications
+Monty	Intro to Databases
+Maggie	Intro to Programming
+Marge	Multimedia and Communications
+Ned	Multimedia and Communications
+Rod	Multimedia and Communications
+--------------
+select fname, pfname, plname from TA, Professor where
+    headProfID=pUserID
+--------------
+
+fname	pfname	plname
+Eric	Laura	Reid
+Homer	Laura	Reid
+Lisa	Laura	Reid
+Monty	Doug	Vancise
+Maggie	Laura	Reid
+Marge	Marc	Moreno Maza
+Ned	Mike	Katchabaw
+Rod	Mike	Bauer
+Waylan	Mark	Perry
+--------------
+select pfname, plname from Professor where pUserID not in 
+    (select headProfID from TA)
+--------------
+
+pfname	plname
+Bob	Mercer
+Charles	Ling
+Hanan	Lutfiyya
+John	Barron
+Mark	Daley
+Nazim	Madhavji
+Sylvia	Osborn
+--------------
+select pfname, plname from Professor where pUserID not in 
+    (select headProfID from TA) and 
+    pUserID not in (select profID from ProfessorCoSupervisesTA)
+--------------
+
+pfname	plname
+Bob	Mercer
+Charles	Ling
+Hanan	Lutfiyya
+John	Barron
+Nazim	Madhavji
+--------------
+select count(*) from TA where studentType='PhD'
+--------------
+
+count(*)
+6
+--------------
+select Course.courseNum, courseName, fname, lname from TA 
+    join TAAssignedToCourse on userID=TAUserID join Course on
+    Course.courseNum=TAAssignedToCourse.courseNum where Course.courseNum
+    like 'cs1___'
+--------------
+
+courseNum	courseName	fname	lname
+cs1026	Intro to Programming	Lisa	Simpson
+cs1026	Intro to Programming	Monty	Burns
+cs1026	Intro to Programming	Maggie	Simpson
+cs1026	Intro to Programming	Marge	Simpson
+cs1033	Multimedia and Communications	Homer	Simpson
+cs1033	Multimedia and Communications	Lisa	Simpson
+cs1033	Multimedia and Communications	Marge	Simpson
+cs1033	Multimedia and Communications	Ned	Flanders
+cs1033	Multimedia and Communications	Rod	Flanders
+--------------
+select theYear, count(theYear) from TAAssignedToCourse group by theYear
+--------------
+
+theYear	count(theYear)
+2012	2
+2013	6
+2014	6
+--------------
+select theYear from TAAssignedToCourse group by theYear 
+    having count(theYear) < 5
+--------------
+
+theYear
+2012
+--------------
+select fname from TA join ProfessorCoSupervisesTA on TA.userID=ProfessorCoSupervisesTA.TAUserID
+    where TA.headProfID='dvancise' or ProfessorCoSupervisesTA.profID='dvancise' group by fname
+--------------
+
+fname
+Monty

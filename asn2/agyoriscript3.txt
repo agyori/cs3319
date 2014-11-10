@@ -1,0 +1,51 @@
+use agyoridb;
+
+#1
+select plname from Professor;
+
+#2
+select fname, lname from TA join Professor on headProfID=pUserID where pfname='Mike';
+
+#3
+select fname, lname, studentType from TA where studentType='PhD';
+
+#4
+select * from Course where courseNum like 'cs2___';
+
+#5
+select fname, courseName from TA join TAAssignedToCourse on TA.userID=TAAssignedToCourse.TAUserID 
+   join Course on TAAssignedToCourse.courseNum=Course.courseNum
+    where TAAssignedToCourse.term='Fall';
+
+#6
+select fname, pfname, plname from TA, Professor where
+    headProfID=pUserID;
+
+#7
+select pfname, plname from Professor where pUserID not in 
+    (select headProfID from TA);
+
+#8*
+select pfname, plname from Professor where pUserID not in 
+    (select headProfID from TA) and 
+    pUserID not in (select profID from ProfessorCoSupervisesTA);
+
+#9
+select count(*) from TA where studentType='PhD';
+
+#10
+select Course.courseNum, courseName, fname, lname from TA 
+    join TAAssignedToCourse on userID=TAUserID join Course on
+    Course.courseNum=TAAssignedToCourse.courseNum where Course.courseNum
+    like 'cs1___';
+
+#11
+select theYear, count(theYear) from TAAssignedToCourse group by theYear;
+
+#12
+select theYear from TAAssignedToCourse group by theYear 
+    having count(theYear) < 5;
+
+#13
+select fname from TA join ProfessorCoSupervisesTA on TA.userID=ProfessorCoSupervisesTA.TAUserID
+    where TA.headProfID='dvancise' or ProfessorCoSupervisesTA.profID='dvancise' group by fname;

@@ -1,0 +1,96 @@
+--------------
+show databases
+--------------
+
+Database
+information_schema
+agyoridb
+mycompany
+mysql
+performance_schema
+vetoffice
+--------------
+drop database if exists agyoridb
+--------------
+
+--------------
+create database agyoridb
+--------------
+
+--------------
+show tables
+--------------
+
+--------------
+create table Professor(
+pfname varchar(30) not null,
+plname varchar(30) not null,
+pUserID char(8) check (pUserID like '__%'),
+PRIMARY KEY (pUserID),
+UNIQUE KEY (pUserID)
+)
+--------------
+
+--------------
+create table TA(
+userID varchar(8) check (userID like '__%'), 
+fname varchar(30) not null, 
+lname varchar(30) not null, 
+studentNum varchar(9) check (studentNum like '_________'), 
+studentType varchar(30) check (studentType='PhD' OR studentType='Masters'),
+imgPath varchar(100), 
+headProfID varchar(8) check (headProfID like '__%'),
+PRIMARY KEY (userID),
+UNIQUE KEY (studentNum),
+UNIQUE KEY (userID),
+FOREIGN KEY (headProfID) REFERENCES Professor(pUserID)
+ON DELETE RESTRICT
+)
+--------------
+
+--------------
+create table Course(
+courseNum varchar(6) check (courseName like 'cs____'), 
+courseName varchar(30) ,
+PRIMARY KEY (courseNum),
+UNIQUE KEY (courseNum)
+)
+--------------
+
+--------------
+create table ProfessorCoSupervisesTA(
+TAUserID varchar(8) check (TAUserID like '__%'),
+profID varchar(8) check (profID like '__%'),
+FOREIGN KEY (TAUserID) REFERENCES TA(userID)
+ON DELETE RESTRICT,
+FOREIGN KEY (profID) REFERENCES Professor(pUserID)
+ON DELETE RESTRICT,
+PRIMARY KEY (TAUserID, profID)
+)
+--------------
+
+--------------
+create table TAAssignedToCourse(
+TAUserID varchar(8) check (TAUserID like '__%'),
+courseNum varchar(6) check (courseName like 'cs____'),
+theYear year,
+term varchar(6) check (term='Winter' OR term='Spring' OR term='Summer' OR term='Fall'),
+studentCount int check (studentCount >= 0),
+FOREIGN KEY (TAUserID) REFERENCES TA(userID)
+ON DELETE RESTRICT,
+FOREIGN KEY (courseNum) REFERENCES Course(courseNum)
+ON DELETE RESTRICT,
+PRIMARY KEY (TAUserID, courseNum)
+)
+--------------
+
+--------------
+show tables
+--------------
+
+Tables_in_agyoridb
+Course
+Professor
+ProfessorCoSupervisesTA
+TA
+TAAssignedToCourse

@@ -1,0 +1,10 @@
+use agyoridb;
+
+create view q1 as (select fname, lname, courseNum, theYear, term from TA join TAAssignedToCourse on userID=TAUserID);
+select * from q1;
+
+select * from Professor;
+delete from Professor where pfname='Hanan';
+select * from Professor;
+delete from Professor where pfname='Doug' and plname='Vancise';
+select * from Professor;

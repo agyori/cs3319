@@ -1,0 +1,129 @@
+use agyoridb;
+
+LOAD DATA INFILE '/tmp/fall2014data.txt' into table Professor
+FIELDS TERMINATED BY ',';
+
+
+
+
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Homer', 'Simpson', '250011111','hsimpson','Masters','lreid2');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Marge', 'Simpson', '250011112','msimpson','Masters','mmm');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Lisa', 'Simpson','250011113','lsimpson','PhD','lreid2');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Maggie','Simpson','250011114','msimpso1','PhD','lreid2');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Ned','Flanders', '250000666','nflanders','PhD','mkatchab');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Todd', 'Flanders','250000667','tflanders','Masters','mbauer');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Monty', 'Burns','250000001','mburns','PhD','dvancise');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Waylan','Smithers','250022222','wsmither','PhD','mbauer');
+insert into TA(fname, lname, studentNum, userID, studentType, headProfID) 
+    values ('Eric', 'Cartman', '250643023', 'ecartman', 'PhD','lreid2');
+
+select * from TA;
+
+
+
+
+insert into Course(courseNum, courseName) 
+    values ('cs1026', 'Intro to Programming');
+insert into Course(courseNum, courseName) 
+    values ('cs1033', 'Multimedia and Communications');
+insert into Course(courseNum, courseName) 
+    values ('cs1032', 'Info Systems and Design');
+insert into Course(courseNum, courseName) 
+    values ('cs2212', 'Intro to Software Engineering');
+insert into Course(courseNum, courseName) 
+    values ('cs3319', 'Intro to Databases');
+insert into Course(courseNum, courseName) 
+    values ('cs4411', 'Advanced Databases');
+insert into Course(courseNum, courseName) 
+    values ('cs2210', 'Data Structures');
+insert into Course(courseNum, courseName) 
+    values ('cs2208', 'Computer Organization');
+insert into Course(courseNum, courseName) 
+    values ('cs2209', 'Logic');
+insert into Course(courseNum, courseName) 
+    values ('cs2211', 'Software Tools');
+insert into Course(courseNum, courseName) 
+    values ('cs3357', 'Networks');
+
+select * from Course;
+
+
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('hsimpson','mdaley');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('hsimpson','mbauer');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('mburns','mdaley');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('mburns','dvancise');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','mbauer');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','sosborn');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('msimpso1','mperry');
+insert into ProfessorCoSupervisesTA(TAUserID, profID)
+    values ('lsimpson','lreid2');
+
+select * from ProfessorCoSupervisesTA;
+
+
+# Homer, Todd, Maggie, cs1033, Fall 2014
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('hsimpson', 'cs1033', 'Fall', 2014);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('tflander', 'cs1033', 'Fall', 2014);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpson', 'cs1033', 'Fall', 2014);
+# Homer, Todd, Waylan, Monty, cs3357, Spring 2013
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('hsimpson', 'cs3357', 'Spring', 2013);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('tflander', 'cs3357', 'Spring', 2013);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('wsmither', 'cs3357', 'Spring', 2013);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs3357', 'Spring', 2013);
+# Nedd, Lisa, cs1033, Fall 2013
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('nflander', 'cs1033', 'Fall', 2013);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('lsimpson', 'cs1033', 'Fall', 2013);
+# Monty, cs3319, Fall 2014
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs3319', 'Fall', 2014);
+# Lisa, Maggie, cs1026, Fall 2014
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('lsimpson', 'cs1026', 'Fall', 2014);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpso1', 'cs1026', 'Fall', 2014);
+# Waylan, Marge, cs1026, Summer 2014
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('mburns', 'cs1026', 'Summer', 2014);
+insert into TAAssignedToCourse(TAUserID, courseNum, term, theYear)
+    values ('msimpson', 'cs1026', 'Summer', 2014);
+
+select * from TAAssignedToCourse;
+
+# Modify Todd's name to be Rod and show table
+select * from TA;
+update TA set fname='Rod' where fname='Todd';
+select * from TA;
+
+# Modify Walyan's head superviser from Bauer to Perry and show table
+select * from TA;
+update TA set headProfID='mperry' where fname='Waylan';
+select * from TA;
+
+# Modify cs1026, Fall, 2014 TAs to be the TAs for Fall 2012 and show table
+select * from TAAssignedToCourse;
+update TAAssignedToCourse set theYear='2012' WHERE courseNum='cs1026' AND term='Fall' AND theYear='2014';
+select * from TAAssignedToCourse;
